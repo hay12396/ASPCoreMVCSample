@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CompaniesEx.Models.Employee>
+<div class="container">
+    <br />
+
+    <div style="display:flex">
+        <input id="SearchQuery" type="search" placeholder="Search a company" />
+        <input id="SearchButton" class="btn btn-info" type="submit" value="Search" asp-action="Search" />
+    </div>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Delete</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Id Number</th>
+                <th>Sex</th>
+                <th>Birthday</th>
+                <th>CompanyId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td><a asp-action="Delete" class="btn btn-danger" asp-route-id="@employee.Id">Delete</a></td>
+                    <td><a asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-info">@employee.FirstName</a></td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.IdNumber</td>
+                    <td>@employee.Sex</td>
+                    <td>@employee.Birthday</td>
+                    <td>@employee.CompanyId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script>
+        $('#SearchButton').click(function (e) {
+            e.preventDefault();
+
+            let query = $('#SearchQuery').val();
+
+            if (query.length == 0)
+                return;
+
+            window.location.href = window.location.href + "?searchQuery=" + query
+        });
+    </script>
+}

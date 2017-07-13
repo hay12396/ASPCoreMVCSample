@@ -1,0 +1,91 @@
+﻿@model CompaniesEx.ViewModels.AddEditCompanyViewModel
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h2>Edit @Model.Name:</h2>
+<form method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <br />
+        <input asp-for="Name" />
+        <div>
+            <span asp-validation-for="Name" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="PHC"></label>
+        <br />
+        <input asp-for="PHC" />
+        <div>
+            <span asp-validation-for="PHC" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Address"></label>
+        <br />
+        <textarea asp-for="Address"></textarea>
+        <div>
+            <span asp-validation-for="Address" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="PhoneNumber"></label>
+        <br />
+        <input asp-for="PhoneNumber" />
+        <div>
+            <span asp-validation-for="PhoneNumber" class="text-danger" />
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </div>
+
+    <hr style="margin:25px 0"/>
+
+    <h3>Employees:</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Delete</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>ID</th>
+                <th>Sex</th>
+                <th>Birthday</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td><a asp-controller="Employees" asp-action="Delete"
+                           class="btn btn-danger" asp-route-id="@employee.Id">Delete</a></td>
+
+                    <td><a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id"
+                           class="btn btn-info">@employee.FirstName</a></td>
+
+                    <td>@employee.LastName</td>
+                    <td>@employee.IdNumber</td>
+                    <td>@employee.Sex</td>
+                    <td>@employee.Birthday</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+
+    <div>
+        <a asp-controller="Employees" asp-action="Add"
+           class="btn btn-warning" asp-route-companyId="@ViewBag.CompanyId" >Add Employee</a>
+    </div>
+</form>

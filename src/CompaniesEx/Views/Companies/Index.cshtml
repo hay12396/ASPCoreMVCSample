@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CompaniesEx.Models.Company>
+<div class="container">
+    <br />
+
+    <div style="display:flex">
+        <input id="SearchQuery" type="search" placeholder="Search an employee"/>
+        <input id="SearchButton" class="btn btn-info" type="submit" value="Search" asp-action="Search"/>
+    </div>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Delete</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>PhoneNumber</th>
+                <th>PHC</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in Model)
+            {
+                <tr>
+                    <td><a asp-action="Delete" class="btn btn-danger" asp-route-id="@company.Id">Delete</a></td>
+                    <td><a asp-action="Edit" asp-route-id="@company.Id" class="btn btn-info">@company.Name</a></td>
+                    <td>@company.Address</td>
+                    <td>@company.PhoneNumber</td>
+                    <td>@company.PHC</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Add" class="btn btn-primary">Add</a>
+</div>
+
+@section scripts{
+    <script>
+        $('#SearchButton').click(function (e) {
+            e.preventDefault();
+            
+            let query = $('#SearchQuery').val();
+            
+            if (query.length == 0)
+                return;
+
+            window.location.href = window.location.href + "?searchQuery=" + query
+        });
+    </script>
+}

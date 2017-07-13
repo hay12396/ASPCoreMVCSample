@@ -1,0 +1,63 @@
+﻿@model CompaniesEx.ViewModels.AddEditEmployeeViewModel
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h2>Edit @Model.FirstName:</h2>
+<form method="post" >
+    <div>
+        <label asp-for="FirstName"></label>
+        <br />
+        <input asp-for="FirstName" />
+        <div>
+            <span asp-validation-for="FirstName" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="LastName"></label>
+        <br />
+        <input asp-for="LastName" />
+        <div>
+            <span asp-validation-for="LastName" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="IdNumber"></label>
+        <br />
+        <input asp-for="IdNumber" />
+        <div>
+            <span class="text-danger">@ViewBag.IdNumberError</span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Sex"></label>
+        <br />
+        <select asp-for="Sex">
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+        </select>
+        <div>
+            <span asp-validation-for="Sex" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Birthday"></label>
+        <br />
+        <input asp-for="Birthday" />
+        <div>
+            <span asp-validation-for="Birthday" class="text-danger"/>
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+        <input class="btn btn-primary" type="submit" value="Create" />
+    </div>
+</form>

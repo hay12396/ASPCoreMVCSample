@@ -1,0 +1,51 @@
+﻿@model CompaniesEx.ViewModels.AddEditCompanyViewModel
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h2>Add new company:</h2>
+<form method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <br />
+        <input asp-for="Name" />
+        <div>
+            <span asp-validation-for="Name" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="PHC"></label>
+        <br />
+        <input asp-for="PHC" />
+        <div>
+            <span asp-validation-for="PHC" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Address"></label>
+        <br />
+        <textarea asp-for="Address"></textarea>
+        <div>
+            <span asp-validation-for="Address" class="text-danger" />
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="PhoneNumber"></label>
+        <br />
+        <input asp-for="PhoneNumber" />
+        <div>
+            <span asp-validation-for="PhoneNumber" class="text-danger" />
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+        <input class="btn btn-primary" type="submit" value="Create" />
+    </div>
+</form>
